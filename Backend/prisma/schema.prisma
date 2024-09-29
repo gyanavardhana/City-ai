@@ -1,0 +1,85 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid()) // Change Int to String and use uuid()
+  username  String   @unique
+  email     String   @unique
+  password  String // Store the hashed password
+  salt      String // Salt used to hash the password
+  role      String   @default("citizen") // citizen, official, admin
+  createdAt DateTime @default(now())
+  reviews   Review[]
+}
+
+model Location {
+  id                  String               @id @default(uuid()) // Unique identifier
+  name                String // Name of the location
+  latitude            Float // Latitude coordinate
+  longitude           Float // Longitude coordinate
+  type                String // Type of location (neighborhood, park, footpath)
+  pollution           Int                  @default(0) // Pollution level (0-100)
+  safety              Int                  @default(0) // Safety rating (0-100)
+  touristAttraction   Boolean              @default(false) // Indicates if it's a tourist attraction
+  crimeRate           Float // Crime rate, can be a float value (e.g., incidents per 1000 people)
+  costOfLiving        CostOfLiving // Cost of living categorized
+  reviews             Review[] // Relation to reviews
+  footpathAssessments FootpathAssessment[] // Relation to footpath assessments
+  ImageMetadata       ImageMetadata[] // Relation to image metadata
+}
+
+// Enum for cost of living categories
+enum CostOfLiving {
+  LOW // Low cost of living
+  MEDIUM // Medium cost of living
+  HIGH // High cost of living
+}
+
+model Review {
+  id         String   @id @default(uuid()) // Change Int to String and use uuid()
+  userId     String // Change Int to String for foreign key
+  locationId String // Change Int to String for foreign key
+  reviewText String
+  rating     Int // 1-5
+  createdAt  DateTime @default(now())
+
+  user     User     @relation(fields: [userId], references: [id])
+  location Location @relation(fields: [locationId], references: [id])
+}
+
+model FootpathAssessment {
+  id              String   @id @default(uuid()) // Change Int to String and use uuid()
+  locationId      String // Change Int to String for foreign key
+  imageURL        String?
+  citizenFeedback String?
+  aiAssessment    String? // good, poor, etc.
+  assessmentDate  DateTime @default(now())
+
+  location Location @relation(fields: [locationId], references: [id])
+}
+
+model Filter {
+  id          String  @id @default(uuid()) // Change Int to String and use uuid()
+  name        String
+  description String?
+}
+
+model ImageMetadata {
+  id          String   @id @default(uuid()) // Change Int to String and use uuid()
+  locationId  String // Change Int to String for foreign key
+  imageURL    String
+  description String?
+  labels      String[] // An array of labels/tags
+  uploadedAt  DateTime @default(now())
+
+  location Location @relation(fields: [locationId], references: [id])
+}
