@@ -39,8 +39,8 @@ const getReviewsByLocation = async (req, res) => {
         });
 
         if (!reviews.length) {
-            logger.error("No reviews found for this location");
-            return res.status(404).json({ error: "No reviews found" });
+            logger.warn("No reviews found for this location");
+            return res.status(200).json({ reviews });
         }
 
         logger.info("Reviews retrieved");
