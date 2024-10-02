@@ -3,7 +3,7 @@ import { GoogleMap, Marker, InfoWindow } from "@react-google-maps/api";
 import axios from "axios";
 import { Search, MapPin, X } from "lucide-react";
 import Sidebar from "./Sidebar";
-import EditSidebar from "./EditSidebar";
+import EditSidebar from "./Editsidebar";
 import Cookies from "js-cookie";
 import Navbar from "../Homepage/Navbar";
 
