@@ -6,7 +6,6 @@ import Login from "./Components/Login/Login";
 import Locationmappage from "./Components/Locationmappage/Locationmappage";
 import Reviewpage from "./Components/Reviewpage/Reviewpage";
 import { LoadScript } from "@react-google-maps/api";
-import Footpath from "./Components/Footpathassessmentpage/Footpath";
 import Imagemeta from "./Components/Imagemetapage/Imagemeta";
 import X from "./Components/x";
 import Dashboard from "./Components/Admindashboardpage/Admindashboard";
@@ -25,7 +24,6 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/location-map" element={<Locationmappage />} />
           <Route path="/reviews" element={<Reviewpage />} />
-          <Route path="/footpath" element={<Footpath />} />
           <Route path="/x" element={<Chatbot />} />
           <Route path="/image-meta" element={<Imagemeta />} />
           <Route path="/dashboard" element={<Dashboard locations={locations} reviews={reviews} users={users} images={images} />} />
