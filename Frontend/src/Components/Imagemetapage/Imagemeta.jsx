@@ -5,7 +5,7 @@ import { GoogleMap, Marker } from "@react-google-maps/api";
 import Navbar from "../Homepage/Navbar";
 import ImageUpload from "./ImageUpload";
 import { Edit, Eye, X } from 'lucide-react';
-
+import Mapicon from '../../assets/mapicon.png';
 const Imagemeta = () => {
   const [locations, setLocations] = useState([]);
   const [selectedLocation, setSelectedLocation] = useState(null);
@@ -161,7 +161,7 @@ const Imagemeta = () => {
                     key={location.id}
                     position={{ lat: location.latitude, lng: location.longitude }}
                     onClick={() => handleMapClick({ latLng: { lat: () => location.latitude, lng: () => location.longitude } })}
-                    icon="src/assets/mapicon.png"
+                    icon={Mapicon}
                   />
                 ))}
               </GoogleMap>

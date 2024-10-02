@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 import Navbar from "../Homepage/Navbar";
 import VoiceReview from "./Voicereview";
 import { Star, Edit, X } from 'lucide-react';
-
+import Mapicon from '../../assets/mapicon.png';
 const center = {
   lat: -33.865143,
   lng: 151.2099,
@@ -145,7 +145,7 @@ const Reviewpage = () => {
                     key={location.id}
                     position={{ lat: location.latitude, lng: location.longitude }}
                     onClick={() => handleMapClick({ latLng: { lat: () => location.latitude, lng: () => location.longitude } })}
-                    icon="src/assets/mapicon.png"
+                    icon={Mapicon}
                   />
                 ))}
                 {selectedLocation && (

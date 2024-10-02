@@ -6,6 +6,7 @@ import Sidebar from "./Sidebar";
 import EditSidebar from "./Editsidebar";
 import Cookies from "js-cookie";
 import Navbar from "../Homepage/Navbar";
+import Mapicon from '../../assets/mapicon.png';
 
 const mapContainerStyle = {
   width: "100%",
@@ -214,7 +215,7 @@ const LocationMapPage = () => { // Corrected the component name to PascalCase
                   key={location.id}
                   position={{ lat: location.latitude, lng: location.longitude }}
                   onClick={() => handleSavedLocationClick(location)}
-                  icon="src/assets/mapicon.png"
+                  icon={Mapicon}
                 />
               ))}
 
